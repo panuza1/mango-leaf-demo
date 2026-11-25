@@ -10,10 +10,10 @@
 </head>
 <body><main><header><h1>Mango Leaf AI</h1><p>Mango leaf disease classification • 8 classes • Real model inference</p></header>
 <div class="tags"><span>SVM</span><span>Custom CNN</span><span>GoogLeNet</span></div>
-<div id="status" role="status">Inference service is not configured. Set the Gradio backend URL in config.js. No predictions are simulated.</div>
-<iframe id="demo" title="Mango leaf classification demo" hidden></iframe>
+<div id="status" role="status">Inference backend is not connected. Predictions require the trained models.</div>
+<iframe id="demo" title="Upload and predict mango leaf disease" hidden></iframe>
 <footer>Research prototype. Predictions are not guaranteed diagnoses.</footer>
 </main><script src="config.js"></script><script>
 const value=window.MANGO_BACKEND_URL;
-if(value){try{const url=new URL(value);if(url.protocol!=="https:")throw new Error("HTTPS required");document.getElementById("demo").src=url.href;document.getElementById("demo").hidden=false;document.getElementById("status").hidden=true;}catch{document.getElementById("status").textContent="Invalid backend URL. Use a public HTTPS endpoint.";}}
+if(value){try{const url=new URL(value);if(url.protocol!=="https:")throw new Error("HTTPS required");document.getElementById("demo").src=url.href;document.getElementById("demo").hidden=false;const status=document.getElementById("status");status.textContent="Upload an image below and select Classify image. If the demo does not load, the inference backend may still be offline. ";const link=document.createElement("a");link.href=url.href;link.textContent="Open inference service directly";link.target="_blank";link.rel="noopener noreferrer";status.append(link);}catch{document.getElementById("status").textContent="Invalid backend URL. Use a public HTTPS endpoint.";}}
 </script></body></html>
